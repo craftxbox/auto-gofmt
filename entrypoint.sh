@@ -19,6 +19,7 @@ EOF
 
     git config --global user.email "actions@github.com"
     git config --global user.name "GitHub Action"
+    git config --global --add safe.directory /github/workspace
 }
 
 # Checks if any files are changed
