@@ -19,7 +19,6 @@ EOF
 
     git config --global user.email "actions@github.com"
     git config --global user.name "GitHub Action"
-    git config --global --add safe.directory /github/workspace
 }
 
 # Checks if any files are changed
@@ -37,6 +36,8 @@ echo "Formatting files..."
 echo "Files:"
 gofumpt $INPUT_FORMATTER_OPTIONS \
   || { FORMATTER_RESULT=$?; echo "Problem running gofumpt with $INPUT_FORMATTER_OPTIONS"; exit 1; }
+
+git config --global --add safe.directory /github/workspace
 
 # To keep runtime good, just continue if something was changed
 if _git_changed; then
